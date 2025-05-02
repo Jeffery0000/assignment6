@@ -1,9 +1,17 @@
 import './Header.css';
 import logoImage from '../assets/logo.png';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { useStoreContext } from '../context/index.jsx';
 
 function Header() {
     const navigate = useNavigate();
+    const { firstName } = useStoreContext();
+    const { loggedIn, setLoggedIn } = useStoreContext();
+
+    const handleLogout = () => {
+        setLoggedIn(false);
+        navigate('/');
+    };
 
     return (
         <div className="header">
@@ -11,9 +19,26 @@ function Header() {
                 <h1>Stream City</h1>
                 <img className="logo-image" src={logoImage} alt="Logo Image" />
             </div>
+            <div className="welcome-container">
+                {loggedIn ? (
+                    <> <p className="welcome-message">Hello, {firstName}!</p> </>
+                ) : (
+                    <></>
+                )}
+            </div>
             <div className="login-buttons">
-                <button onClick={() => navigate("/login")}>Login</button>
-                <button onClick={() => navigate("/register")}>Register</button>
+                {loggedIn ? (
+                    <>
+                        <button onClick={() => navigate("/cart")}>Cart</button>
+                        <button onClick={() => navigate("/settings")}>Settings</button>
+                        <button onClick={handleLogout}>Logout</button>
+                    </>
+                ) : (
+                    <>
+                        <button onClick={() => navigate("/login")}>Login</button>
+                        <button onClick={() => navigate("/register")}>Register</button>
+                    </>
+                )}
             </div>
         </div>
     );

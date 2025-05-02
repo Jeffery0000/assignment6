@@ -54,7 +54,6 @@ function RegisterView() {
             alert("Your passwords don't match!");
             return;
         }
-        console.log(confirmedPassword.current.value, password.current.value);
 
         setFirst(firstName.current.value);
         setLast(lastName.current.value);

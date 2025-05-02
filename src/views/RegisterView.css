@@ -53,23 +53,117 @@
     box-shadow: 0 0 0 0.125rem rgba(255, 255, 255, 0.5);
 }
 
-.register .submit-button {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 0.25rem;
-    background-color: #2a2d31;
-    color: white;
-    font-weight: 600;
+.register .genre-selection {
+    margin: 1.5rem 0;
+    width: 100%;
+}
+
+.register .genre-selection h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
     letter-spacing: 0.05rem;
-    font-size: 1rem;
+    color: #fff;
+    font-weight: 700;
+    text-shadow: 0 0 0.5rem rgba(0, 255, 136, 0.4);
+}
+
+.register .genre-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+.register .genre-checkboxes div {
+    --checkbox-size: 1.75rem;
+    --checkbox-color: #00ff88;
+    --checkbox-shadow: rgba(0, 255, 136, 0.3);
+    --checkbox-border: rgba(0, 255, 136, 0.7);
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-top: 1rem;
-    align-self: center;
-    border: 0.0625rem solid #424548;
+    padding: 0.5rem 0.75rem;
+}
+
+.register .genre-checkboxes input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.register .genre-checkboxes label {
+    position: relative;
+    padding-left: 2.75rem;
+    cursor: pointer;
+    user-select: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.register .genre-checkboxes label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--checkbox-size);
+    height: var(--checkbox-size);
+    border: 0.125rem solid var(--checkbox-border);
+    border-radius: 0.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 0.9rem var(--checkbox-shadow);
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.register .genre-checkboxes label::after {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: var(--checkbox-size);
+    height: var(--checkbox-size);
+    transform: translateY(-50%);
+    background: linear-gradient(45deg, var(--checkbox-color), #00ffcc);
+    border-radius: 0.5rem;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: #000;
+}
+
+.register .genre-checkboxes input[type="checkbox"]:checked + label::after {
+    opacity: 1;
+}
+
+.register .genre-checkboxes div:hover label::before {
+    box-shadow: 0 0 1.5rem var(--checkbox-shadow);
+}
+
+.register .submit-button {
+    margin-top: 2rem;
+    padding: 0.75rem 2rem;
+    background: linear-gradient(45deg, #00ff88, #00ffcc);
+    color: #000;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.9rem rgba(0, 255, 136, 0.4);
+    transition: all 0.3s ease;
 }
 
 .register .submit-button:hover {
-    background-color: #424548;
-    transform: translateY(-0.125rem);
+    transform: translateY(-0.2rem);
+    box-shadow: 0 0 1.25rem rgba(0, 255, 136, 0.6);
 }

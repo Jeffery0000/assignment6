@@ -1,12 +1,22 @@
 import './LoginView.css';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useStoreContext } from "../context/index.jsx";
 
 function LoginView() {
     const navigate = useNavigate();
+    const { loggedIn, setLoggedIn } = useStoreContext();
+    const { email, password } = useStoreContext();
+    const [userPassword, setPassword] = useState('');
 
     const handleLogin = (e) => {
         e.preventDefault();
-        navigate('/movies');
+        if (userPassword === password) {
+            setLoggedIn(true);
+            navigate('/movies');
+        } else {
+            alert("Wrong password!");
+        }
     };
 
     return (
@@ -16,7 +26,7 @@ function LoginView() {
                 <label className='form-label' htmlFor="email">Email</label>
                 <input id='email' type='email' name='email' className='form-input' required />
                 <label htmlFor="password" className='form-label'>Password</label>
-                <input id="password" type='password' name="password" className='form-input' required />
+                <input id="password" type='password' name="password" className='form-input' value={userPassword} onChange={(event) => { setPassword(event.target.value) }} required />
                 <button type='submit' className='submit-button'>Login</button>
             </form>
         </div>
