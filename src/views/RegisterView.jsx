@@ -43,7 +43,7 @@ function RegisterView() {
             .filter((genreId) => checkBoxes.current[genreId].checked)
             .map(Number);
 
-        if (selectedGenresIds.length <= 5) {
+        if (selectedGenresIds.length < 5) {
             alert("You need at least 5 genres!");
             return;
         }
