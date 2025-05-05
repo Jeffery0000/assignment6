@@ -1,5 +1,6 @@
 import './SettingsView.css';
 import Header from '../components/Header';
+import { useStoreContext } from '../context/index.jsx';
 
 function SettingsView() {
   return (
