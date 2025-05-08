@@ -11,6 +11,7 @@
 }
 
 .register-title {
+    color: white;
     font-size: 2.5rem;
     text-transform: uppercase;
     letter-spacing: 0.125em;
@@ -144,4 +145,11 @@
 .register .submit-button:hover {
     transform: translateY(-0.2rem);
     box-shadow: 0 0 1.25rem rgba(0, 255, 136, 0.6);
+}
+
+.register .form-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.125rem rgba(0, 255, 136, 0.5);
+    border-color: var(--checkbox-color);
+    transition: box-shadow 0.3s ease;
 }

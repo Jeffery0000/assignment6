@@ -74,3 +74,10 @@
     background-color: #424548;
     transform: translateY(-0.125rem);
 }
+
+.login .form-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.125rem rgba(0, 255, 136, 0.5);
+    border-color: #00ff88;
+    transition: box-shadow 0.3s ease;
+}

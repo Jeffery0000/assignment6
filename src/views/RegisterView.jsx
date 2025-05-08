@@ -10,7 +10,8 @@ function RegisterView() {
         setEmail,
         setPassword,
         setSelected,
-        setCurrentGenre
+        setCurrentGenre,
+        setLoggedIn
     } = useStoreContext();
 
     const navigate = useNavigate();
@@ -62,7 +63,8 @@ function RegisterView() {
         setSelected(selectedGenres);
         setCurrentGenre(selectedGenresIds[0].genre);
 
-        navigate('/login');
+        setLoggedIn(true);
+        navigate('/movies');
     };
 
     return (
