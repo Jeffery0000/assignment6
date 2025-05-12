@@ -29,7 +29,7 @@
     transition: transform 0.3s ease;
 }
 
-.genre-view-item:hover {
+.genre-view-image:hover {
     transform: scale(1.05);
 }
 
@@ -39,9 +39,35 @@
     object-fit: cover;
     border-radius: 0.5rem;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
 }
 
-.no-image {
+.genre-view .buy-button {
+    margin-top: 0.7rem;
+    padding: 0.75rem 2rem;
+    background: linear-gradient(45deg, #00ff88, #00ffcc);
+    color: #000;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.9rem rgba(0, 255, 136, 0.4);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.genre-view .buy-button:hover:enabled {
+    transform: translateY(-0.2rem);
+    box-shadow: 0 0 1.25rem rgba(0, 255, 136, 0.6);
+}
+
+.genre-view .buy-button:disabled {
+    background: #ccc;
+    color: #666;
+    box-shadow: none;
+    cursor: default;
+}
+
+.genre-view .no-image {
     width: 100%;
     aspect-ratio: 2/3;
     display: flex;

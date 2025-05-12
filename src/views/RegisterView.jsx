@@ -40,9 +40,7 @@ function RegisterView() {
     const handleRegister = (e) => {
         e.preventDefault();
 
-        const selectedGenresIds = Object.keys(checkBoxes.current)
-            .filter((genreId) => checkBoxes.current[genreId].checked)
-            .map(Number);
+        const selectedGenresIds = Object.keys(checkBoxes.current).filter((genreId) => checkBoxes.current[genreId].checked).map(Number);
 
         if (selectedGenresIds.length < 5) {
             alert("You need at least 5 genres!");
@@ -64,7 +62,7 @@ function RegisterView() {
         setCurrentGenre(selectedGenresIds[0].genre);
 
         setLoggedIn(true);
-        navigate('/movies');
+        navigate('/movies/genre/' + selectedGenresIds[0]);
     };
 
     return (

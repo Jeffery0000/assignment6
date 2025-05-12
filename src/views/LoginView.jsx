@@ -5,15 +5,16 @@ import { useStoreContext } from "../context/index.jsx";
 
 function LoginView() {
     const navigate = useNavigate();
-    const { loggedIn, setLoggedIn } = useStoreContext();
-    const { email, password } = useStoreContext();
+    const { email, password, setLoggedIn, selectedGenres } = useStoreContext();
     const [userPassword, setPassword] = useState('');
 
     const handleLogin = (e) => {
+        const genre = selectedGenres[0].id;
+
         e.preventDefault();
         if (userPassword === password) {
             setLoggedIn(true);
-            navigate('/movies');
+            navigate('/movies/genre/' + genre);
         } else {
             alert("Wrong password!");
         }

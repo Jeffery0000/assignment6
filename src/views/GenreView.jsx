@@ -42,9 +42,8 @@ function GenreView() {
     const handleBuy = (movieId) => {
         const movie = movies.find(movie => movie.id === movieId);
         if (movie) {
-            const updatedCart = [...cart, { ...movie, quantity: 1 }];
+            const updatedCart = [...cart, movie];
             setCart(updatedCart);
-            alert(`${movie.title} has been added to your cart!`);
         } else {
             alert("Movie not found!");
         }
@@ -55,22 +54,23 @@ function GenreView() {
             <h1>{genreName}</h1>
             <div className="genre-view-content">
                 {movies.length > 0 ? (
-                    movies.map((movie) => (
-                        <div key={movie.id} className="genre-view-item">
-                            <Link to={`/movies/details/${movie.id}`}>
-                                {movie.poster_path ? (
-                                    <img
-                                        src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                                        alt={movie.title}
-                                        className="genre-view-image"
-                                    />
-                                ) : (
-                                    <div className="no-image">No Image Available</div>
-                                )}
-                            </Link>
-                            <button onClick={() => handleBuy(movie.id)}>Buy</button>
-                        </div>
-                    ))
+                    movies.map((movie) => {
+                        const isInCart = cart.some(item => item.id === movie.id);
+                        return (
+                            <div key={movie.id} className="genre-view-item">
+                                <div className="genre-view-poster">
+                                    <Link to={`/movies/details/${movie.id}`}>
+                                        {movie.poster_path ? (
+                                            <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title} className="genre-view-image" />
+                                        ) : (
+                                            <div className="no-image">No Image Available</div>
+                                        )}
+                                    </Link>
+                                </div>
+                                <button className="buy-button" onClick={() => handleBuy(movie.id)} disabled={isInCart}>{isInCart ? 'Added' : 'Buy'}</button>
+                            </div>
+                        )
+                    })
                 ) : (
                     <p>No movies available for this genre.</p>
                 )}
@@ -79,7 +79,7 @@ function GenreView() {
                 <button className="genre-view-pagination-button" onClick={() => setPage((p) => Math.max(p - 1, 1))}>Prev</button>
                 <button className="genre-view-pagination-button" onClick={() => setPage((p) => p + 1)}>Next</button>
             </div>
-        </div >
+        </div>
     );
 }
 
