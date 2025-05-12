@@ -2,6 +2,7 @@ import "./GenreView.css";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useStoreContext } from '../context/index.jsx';
 
 const genres = [
     { genre: "Action", id: 28 },
@@ -20,6 +21,7 @@ function GenreView() {
     const { genreID } = useParams();
     const [movies, setMovies] = useState([]);
     const [page, setPage] = useState(1);
+    const { cart, setCart } = useStoreContext();
     const selectedGenre = genres.find(genre => genre.id === parseInt(genreID));
     const genreName = selectedGenre ? selectedGenre.genre : "Movies in Genre";
 
@@ -36,6 +38,17 @@ function GenreView() {
         }
         fetchMovies();
     }, [genreID, page]);
+
+    const handleBuy = (movieId) => {
+        const movie = movies.find(movie => movie.id === movieId);
+        if (movie) {
+            const updatedCart = [...cart, { ...movie, quantity: 1 }];
+            setCart(updatedCart);
+            alert(`${movie.title} has been added to your cart!`);
+        } else {
+            alert("Movie not found!");
+        }
+    }
 
     return (
         <div className="genre-view">
@@ -55,6 +68,7 @@ function GenreView() {
                                     <div className="no-image">No Image Available</div>
                                 )}
                             </Link>
+                            <button onClick={() => handleBuy(movie.id)}>Buy</button>
                         </div>
                     ))
                 ) : (
