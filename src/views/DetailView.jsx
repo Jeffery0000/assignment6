@@ -2,11 +2,22 @@ import './DetailView.css';
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useStoreContext } from '../context/index.jsx';
 
 function DetailView() {
     const [trailers, setTrailers] = useState([]);
     const [movie, setMovie] = useState([]);
     const { id } = useParams();
+    const { cart, setCart } = useStoreContext();
+
+    const isInCart = movie.id && cart.some(item => item.id === movie.id);
+
+    const handleBuy = () => {
+        if (!isInCart && movie) {
+            const updatedCart = [...cart, movie];
+            setCart(updatedCart);
+        }
+    };
 
     useEffect(() => {
         async function fetchMovieDetails() {
@@ -29,8 +40,9 @@ function DetailView() {
             <div className="movie-content">
                 <div className="movie-info">
                     <h1 className="movie-title">{movie.original_title}</h1>
+                    <button className="buy-button" onClick={handleBuy} disabled={isInCart}>{isInCart ? 'Added' : 'Buy'}</button>
                     <p className="movie-overview">{movie.overview}</p>
-                    <div className="movie-info">
+                    <div className="movie-details">
                         <p>Status: {movie.status}</p>
                         <p>Language: {movie.original_language}</p>
                         <p>Runtime: {movie.runtime} minutes</p>

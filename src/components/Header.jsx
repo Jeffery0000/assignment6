@@ -13,6 +13,10 @@ function Header() {
         navigate('/');
     };
 
+    const handleSearch = () => {
+        navigate('/movies/search');
+    };
+
     return (
         <div className="header">
             <div className="title">
@@ -26,9 +30,10 @@ function Header() {
                     <></>
                 )}
             </div>
-            <div className="login-buttons">
+            <div className="header-buttons">
                 {loggedIn ? (
                     <>
+                        <button onClick={handleSearch}>Search</button>
                         <button onClick={() => navigate("/cart")}>Cart</button>
                         <button onClick={() => navigate("/settings")}>Settings</button>
                         <button onClick={handleLogout}>Logout</button>

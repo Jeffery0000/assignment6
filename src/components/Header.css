@@ -33,13 +33,13 @@
     border: 0.05rem solid white;
 }
 
-.header .login-buttons {
+.header .header-buttons {
     display: flex;
     gap: 1rem;
     margin: 0 1rem;
 }
 
-.header .login-buttons button {
+.header .header-buttons button {
     padding: 0.75rem 1.5rem;
     border: none;
     border-radius: 0.25rem;
@@ -52,7 +52,7 @@
     transition: background-color 0.3s;
 }
 
-.header .login-buttons button:hover {
+.header .header-buttons button:hover {
     background-color: #424548;
     transform: translateY(-0.125rem);
 }
