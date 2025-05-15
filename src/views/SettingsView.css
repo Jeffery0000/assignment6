@@ -111,8 +111,6 @@
     transform: translateY(-0.2rem);
 }
 
-/* Add these to your SettingsView.css file */
-
 .settings .email-display {
     background-color: #1d1e22;
     cursor: not-allowed;

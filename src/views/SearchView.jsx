@@ -66,25 +66,15 @@ function SearchView() {
         <div className='search-view'>
             <h1>Search Movies</h1>
             <div className="search-container">
-                <input
-                    type="text"
-                    className="search-input"
-                    placeholder="Search for movies..."
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                />
+                <input type="text" className="search-input" placeholder="Search for movies..." value={query} onChange={(e) => setQuery(e.target.value)} />
             </div>
-
             {loading ? (
                 <div className="loading">Searching...</div>
             ) : (
-                <>
+                <div>
                     {debouncedQuery && (
-                        <h2 className="search-results-title">
-                            Results for "{debouncedQuery}" {totalPages > 0 ? `(Page ${page} of ${totalPages})` : ''}
-                        </h2>
+                        <h2 className="search-results-title">Results for "{debouncedQuery}" {totalPages > 0 ? `(Page ${page} of ${totalPages})` : ''}</h2>
                     )}
-
                     <div className="search-results">
                         {movies.length > 0 ? (
                             movies.map((movie) => {
@@ -94,23 +84,13 @@ function SearchView() {
                                         <div className="search-result-poster">
                                             <Link to={`/movies/details/${movie.id}`}>
                                                 {movie.poster_path ? (
-                                                    <img
-                                                        src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                                                        alt={movie.title}
-                                                        className="search-result-image"
-                                                    />
+                                                    <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title} className="search-result-image" />
                                                 ) : (
                                                     <div className="no-image">No Image Available</div>
                                                 )}
                                             </Link>
                                         </div>
-                                        <button
-                                            className="buy-button"
-                                            onClick={() => handleBuy(movie.id)}
-                                            disabled={isInCart}
-                                        >
-                                            {isInCart ? 'Added' : 'Buy'}
-                                        </button>
+                                        <button className="buy-button" onClick={() => handleBuy(movie.id)} disabled={isInCart}>{isInCart ? 'Added' : 'Buy'}</button>
                                     </div>
                                 );
                             })
@@ -118,27 +98,14 @@ function SearchView() {
                             debouncedQuery && <p className="no-results">No movies found for your search</p>
                         )}
                     </div>
-
                     {totalPages > 0 && (
                         <div className="search-pagination">
-                            <button
-                                className="pagination-button"
-                                onClick={() => setPage(prev => Math.max(prev - 1, 1))}
-                                disabled={page <= 1}
-                            >
-                                Previous
-                            </button>
-                            <span className="page-indicator">{page} / {totalPages}</span>
-                            <button
-                                className="pagination-button"
-                                onClick={() => setPage(prev => prev < totalPages ? prev + 1 : prev)}
-                                disabled={page >= totalPages}
-                            >
-                                Next
-                            </button>
+                            <button className="pagination-button" onClick={() => setPage(prev => Math.max(prev - 1, 1))} disabled={page <= 1}>Previous</button>
+                            <p className="page-indicator">{page} / {totalPages}</p>
+                            <button className="pagination-button" onClick={() => setPage(prev => prev < totalPages ? prev + 1 : prev)} disabled={page >= totalPages}>Next</button>
                         </div>
                     )}
-                </>
+                </div>
             )}
         </div>
     );

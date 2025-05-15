@@ -52,6 +52,16 @@
     box-shadow: 0 0 0 0.125rem rgba(255, 255, 255, 0.5);
 }
 
+.register .genre-selection h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05rem;
+    color: #fff;
+    font-weight: 700;
+    text-shadow: 0 0 0.5rem rgba(0, 255, 136, 0.4);
+}
+
 .register .genre-checkboxes {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
